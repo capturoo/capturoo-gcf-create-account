@@ -1,5 +1,6 @@
 {
   "name": "leads-dashboard-gcf",
+  "version": "1.0.0",
   "description": "Cloud Functions for Leads Dashboard",
   "scripts": {
     "serve": "firebase serve --only functions",
