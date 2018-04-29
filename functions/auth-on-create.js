@@ -1,7 +1,7 @@
 'use strict';
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-
+const apikey = require('apikeygen').apikey;
 const serviceAccount = require('./credentials.json');
 
 admin.initializeApp({
@@ -22,6 +22,7 @@ function createAccount(uid, email) {
   return new Promise(function(resolve, reject) {
     firestore.collection('accounts').doc(uid).set({
       email,
+      privateApiKey: apikey(),
       created: admin.firestore.FieldValue.serverTimestamp(),
       lastModified: admin.firestore.FieldValue.serverTimestamp()
     })
@@ -34,11 +35,8 @@ function createAccount(uid, email) {
   });
 }
 
-
 exports.createAccountGcf = functions.auth.user().onCreate((event) => {
-  const user = event.data;
-
-  return createAccount(user.uid, user.email)
+  return createAccount(event.uid, event.email)
     .then(result => {
       console.log(result);
     })

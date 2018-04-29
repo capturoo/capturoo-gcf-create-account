@@ -1,16 +1,17 @@
 {
-  "name": "functions",
+  "name": "leads-dashboard-gcf",
   "description": "Cloud Functions for Leads Dashboard",
   "scripts": {
     "serve": "firebase serve --only functions",
     "shell": "firebase experimental:functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
+    "deploy": "firebase deploy --only functions:createAccount",
     "logs": "firebase functions:log"
   },
   "dependencies": {
-    "firebase-admin": "~5.10.0",
-    "firebase-functions": "^0.9.0"
+    "apikeygen": "^0.2.0",
+    "firebase-admin": "~5.12.0",
+    "firebase-functions": "^1.0.2"
   },
   "private": true
 }
