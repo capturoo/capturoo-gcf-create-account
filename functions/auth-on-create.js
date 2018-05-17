@@ -1,12 +1,12 @@
 'use strict';
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-const apikey = require('apikeygen').apikey;
+const crypto = require('crypto');
 const serviceAccount = require('./credentials.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://leads-dashboard-staging.firebaseio.com'
+  databaseURL: 'https://capturoo-api-staging.firebaseio.com'
 });
 
 const firestore = admin.firestore();
@@ -22,7 +22,15 @@ function createAccount(uid, email) {
   return new Promise(function(resolve, reject) {
     firestore.collection('accounts').doc(uid).set({
       email,
-      privateApiKey: apikey(),
+      privateApiKey: (function () {
+        let base62 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let str = '';
+        // 62^43 > 2^256 so 43 characters is greater than 256 bit entropy
+        for (let b of crypto.randomBytes(43)) {
+          str += base62[b % 62];
+        };
+        return str;
+      })(),
       created: admin.firestore.FieldValue.serverTimestamp(),
       lastModified: admin.firestore.FieldValue.serverTimestamp()
     })

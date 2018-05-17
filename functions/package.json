@@ -1,17 +1,17 @@
 {
-  "name": "leads-dashboard-gcf",
-  "version": "1.0.0",
-  "description": "Cloud Functions for Leads Dashboard",
+  "name": "capturoo-gcf-create-account",
+  "version": "1.1.0",
+  "description": "GCF to create an account Document when a user signs up",
   "scripts": {
     "serve": "firebase serve --only functions",
-    "shell": "firebase experimental:functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions:createAccount",
-    "logs": "firebase functions:log"
+    "deploy-staging": "firebase -P default deploy --only functions:createAccount",
+    "deploy-production": "firebase -P production deploy --only functions:createAccount",
+    "logs-staging": "firebase -P default functions:log",
+    "logs-prodution": "firebase -P production functions:log"
   },
   "dependencies": {
-    "apikeygen": "^0.2.0",
-    "firebase-admin": "~5.12.0",
+    "firebase-admin": "^5.12.1",
     "firebase-functions": "^1.0.2"
   },
   "private": true
