@@ -1,4 +1,7 @@
 # CHANGELOG
+## 1.2.0 (2 June 2018)
++ Move code to a single function inside of index.js to avoid require() statement
++ Remove credentials and use Firebase admin config
 
 ## 1.1.0 (17 May 2018)
 + Remove external apikeygen dependency
