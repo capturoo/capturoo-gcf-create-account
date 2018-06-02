@@ -1,6 +1,6 @@
 {
   "name": "capturoo-gcf-create-account",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "GCF to create an account Document when a user signs up",
   "scripts": {
     "serve": "firebase serve --only functions",
