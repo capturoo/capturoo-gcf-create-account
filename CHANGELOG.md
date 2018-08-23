@@ -1,4 +1,11 @@
 # CHANGELOG
+## 2.0.0 (23 August 2018)
++ Use Node 8 Runtime
++ Remove functions.config().firebase and use default config instead
++ timestampsInSnapshots: true
++ Use async/await try/catch in place of Promise chains
++ Upgrade to firebase-admin 6 and firebase-functions 2
+
 ## 1.2.0 (2 June 2018)
 + Move code to a single function inside of index.js to avoid require() statement
 + Remove credentials and use Firebase admin config
